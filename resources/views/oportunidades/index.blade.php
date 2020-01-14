@@ -59,7 +59,7 @@
 @section('js')
     <script>
         DisposeGrids();
-        TreeGrid({Layout:{Url:"layoutPipeline"},Data:{Url:"dataPipeline/"},Upload:{Url:"savePipeline/",Attrs:"_token",Method:"Form"},Debug:0},"dataGrid");
+        TreeGrid({Layout:{Url:"layoutPipeline"},Data:{Url:"dataPipeline/"},Upload:{Url:"savePipeline/",Attrs:"codigo"},Debug:0},"dataGrid");
         R = null;
         Grids.OnAfterValueChanged = function(G,row,col) {
 

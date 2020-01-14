@@ -53,7 +53,6 @@
                presupuesto_referencial ="{{$o->presupuesto_referencial}}"
                empresa_socia ="{{$o->empresa_socia}}"
                porcentaje_participacion ="{{$o->porcentaje_participacion}}"
-               _token ="{{ csrf_token() }}"
             />
         @endforeach
     </B>

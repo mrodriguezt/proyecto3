@@ -29,7 +29,7 @@ class OportunidadesController extends Controller
         $nPaises = implode("|",$nP);
         $cPaises = implode("|",$cP);
 
-        $clientes = Cliente::where('status','A')->get();
+        $clientes = Cliente::where('status','A')->orderBy('nombre')->get();
         $nC = array();
         $cC = array();
         foreach ($clientes as $n){
@@ -123,7 +123,7 @@ class OportunidadesController extends Controller
                                             'presupuesto_referencial' => $A["presupuesto_referencial"],
                                             'proposal_mgr_asignado' => $A["proposal_mgr_asignado"]
                                             ]);
-                    $cambios.= "<I id='".$A["id"]."' NewId='".$pip->id."' Changed='1'/>";
+                    $cambios.= "<I id='".$A["id"]."' NewId='".$pip->id."' codigo='".$pip->id."' Changed='1'/>";
                 }else if(!empty($A["Changed"])){
                     $pip = Pipeline::find($A["id"]);
                     if(isset($A["empresa"]))
@@ -229,7 +229,7 @@ class OportunidadesController extends Controller
         }
         echo '<Grid>';
         echo '<Changes>';
-        echo '<IO Result="" Message="La información ha sido grabada" />';
+        echo '<IO Result="" Message="La información ha sido grabada" />'.$cambios;
         echo '</Changes>';
         echo '</Grid>';
     }
