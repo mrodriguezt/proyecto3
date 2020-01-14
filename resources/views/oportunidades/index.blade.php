@@ -73,34 +73,30 @@
             }
         }
         function guardarCliente() {
-            $.ajax({
-                type: "POST",
-                url: '{{URL::route("crearCliente")}}',
-                data: {ruc:  $("#ruc").val(),
-                    nombreCliente:  $("#nombreCliente").val(),
-                    telefonoCliente:  $("#telefonoCliente").val(),
-                    correoCliente:  $("#correoCliente").val(),
-                    contactoCliente:  $("#contactoCliente").val(),
-                    "_token": "{{ csrf_token() }}",},
-                success: function( msg ) {
-                    if(msg=="ERROR"){
-                        alert("El cliente no puede ser guardado")
-                    }else{
-                        for (var i = 0; i < Grids.length; i++) {
-                            var Gr = Grids[i];
-                            if (Gr) {
-                                if (Gr.id == "pipeline"){
-                                    alert(R)
-                                    G.SetValue(R, "cliente",1, 1);
-                                    G.RefreshCell (R, "cliente");
-                                    alert(R)
-                                }
-                            }
+            if( $("#nombreCliente").val()!="") {
+                $.ajax({
+                    type: "POST",
+                    url: '{{URL::route("crearCliente")}}',
+                    data: {
+                        ruc: $("#ruc").val(),
+                        nombreCliente: $("#nombreCliente").val(),
+                        telefonoCliente: $("#telefonoCliente").val(),
+                        correoCliente: $("#correoCliente").val(),
+                        contactoCliente: $("#contactoCliente").val(),
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function (msg) {
+                        if (msg == "ERROR") {
+                            alert("El cliente no puede ser guardado")
+                        } else {
+                            alert("El nuevo cliente ha sido guardado.")
                         }
-                        R = null;
                     }
-                }
-            });
+                });
+            }else{
+                alert("Debe ingresar el nombre del cliente")
+                $('#myModal').modal();
+            }
         }
     </script>
 @endsection
