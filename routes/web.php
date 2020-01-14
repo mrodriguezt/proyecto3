@@ -35,7 +35,7 @@ Route::get('dataPipeline/', [
     'uses' => 'OportunidadesController@dataPipeline'
 ]);
 Route::post('savePipeline/', [
-    'as' => 'savePipeline',
+    'as' => 'savePipeline/',
     'uses' => 'OportunidadesController@savePipeline'
 ]);
 
