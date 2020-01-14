@@ -47,7 +47,7 @@ class OportunidadesController extends Controller
         $data = ["oportunidades"=>$oportunidades];
         return response()->view("oportunidades.data.oportunidades",$data)->header('Content-Type', 'text/xml');
     }
-    public function savePipeline()
+    public function savePipeline(Request $request)
     {
         $POST =$_POST;
         $A = array();
