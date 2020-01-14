@@ -43,7 +43,7 @@ Route::get('clientes/', [
     'as' => 'clientes',
     'uses' => 'ClienteController@clientes'
 ]);
-Route::post('crearCliente', [
+Route::post('crearCliente/', [
     'as' => 'crearCliente',
     'uses' => 'ClienteController@crearCliente'
 ]);

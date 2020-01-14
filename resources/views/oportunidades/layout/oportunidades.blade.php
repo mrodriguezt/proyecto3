@@ -54,6 +54,7 @@
         <C Name='proposal_mgr_asignado' Width='120' Type='Text' CanEdit="1"/>
         <C Name='fecha_creacion' Width='120' Type='Date' CanEdit="0" Format="yyyy-mm-dd"/>
         <C Name='fecha_actualizacion' Width='120' Type='Date' CanEdit="0" Format="yyyy-mm-dd"/>
+        <C Name='_token' Width='120' Type='Text' />
     </Cols>
     <Header  Wrap="1"
     empresa="Empresa"  pais="Pais" ciudad ="Ciudad" codigo="ID" cliente="Cliente" codigo_licitacion="Codigo de Licitación" nombre_proyecto="Nombre de Proyecto" industria="Industria"  sub_industria="Sub-Industria" estado="Estado"
