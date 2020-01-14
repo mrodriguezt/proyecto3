@@ -30,6 +30,7 @@ class OportunidadesController extends Controller
         $cPaises = implode("|",$cP);
 
         $clientes = Cliente::where('status','A')->orderBy('nombre')->get();
+
         $nC = array();
         $cC = array();
         foreach ($clientes as $n){
