@@ -294,7 +294,7 @@ return [
     'sync_attributes' => [
 
       //  'email' => 'userprincipalname',
-        'username' => 'username',
+        'username' => 'samaccountname',
         'name' => 'cn',
 
     ],

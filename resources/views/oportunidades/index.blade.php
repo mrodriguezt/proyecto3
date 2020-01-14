@@ -1,12 +1,11 @@
 @extends('template.main')
-@section('title','OPERACIONES')
+@section('title','COMERCIAL')
 @section('content')
     <br>
     <h4><span class="badge badge-secondary">PIPELINE</span></h4><br>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Nuevo
+        Crear Nuevo Cliente
     </button>
-
     <table class="table table-bordered">
         <tbody>
         <tr>
@@ -14,76 +13,45 @@
         </tr>
         </tbody>
     </table>
-
     <!-- The Modal -->
     <div class="modal" id="myModal">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Crear Nuevo</h4>
+                    <h4 class="modal-title">Crear Nuevo Cliente</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-
                 <!-- Modal body -->
                 <div class="modal-body">
                     <form>
                         <div class="row">
                             <div class="col">
-                                {!! Form::select('empresa',['SCMI','IAA'],null,['class'=>'form-control select-rol','placeholder'=>'Seleccione la Empresa','required']) !!}
+                                {!! Form::text('ruc', null,['class'=>'form-control','placeholder' => 'RUC','id'=>'ruc']); !!}
                             </div>
                             <div class="col">
-                                {!! Form::text('cliente', null,['class'=>'form-control','placeholder' => 'Cliente']); !!}
+                                {!! Form::text('nombreCliente', null,['class'=>'form-control','placeholder' => 'Nombre','id'=>'nombreCliente']); !!}
                             </div>
                             <div class="col">
-                                {!! Form::select('paises',$paises,null,['class'=>'form-control select-rol','placeholder'=>'Pais','required']) !!}
-                            </div>
-                            <div class="col">
-                                {!! Form::text('ciudad', null,['class'=>'form-control','placeholder' => 'Ciudad']); !!}
-                            </div>
-
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col">
-                                {!! Form::text('ciudad', null,['class'=>'form-control','placeholder' => 'Codigo de Licitacion']); !!}
-                            </div>
-                            <div class="col">
-                                {!! Form::text('ciudad', null,['class'=>'form-control','placeholder' => 'Nombre de Proyecto']); !!}
-                            </div>
-                            <div class="col">
-                                {!! Form::select('industria',['Generacion','O&G','Mineral','Industrial','Otro'],null,['class'=>'form-control select-rol','placeholder'=>'Seleccione la Empresa','required']) !!}
-                            </div>
-                            <div class="col">
-                                {!! Form::text('ciudad', null,['class'=>'form-control','placeholder' => 'Sub Industria']); !!}
+                                {!! Form::text('telefonoCliente', null,['class'=>'form-control','placeholder' => 'Telefono','id'=>'telefonoCliente']); !!}
                             </div>
                         </div>
                         <br>
                         <div class="row">
-
                             <div class="col">
-                                {!! Form::select('estado',['Oportunidad Identificada','Referencial','RFQ Recibido'],null,['class'=>'form-control select-rol','placeholder'=>'Seleccione la Empresa','required']) !!}
+                                {!! Form::text('correoCliente', null,['class'=>'form-control','placeholder' => 'Correo','id'=>'correoCliente']); !!}
                             </div>
                             <div class="col">
-                                {!! Form::number('valor_orferta_scmi', null,['class'=>'form-control','placeholder' => 'Valor de Oferta']); !!}
-                            </div>
-                            <div class="col">
-                                {!! Form::number('probabilidad_ejecucion', null,['class'=>'form-control','placeholder' => 'Probabilida de Ejecución']); !!}
-                            </div>
-                            <div class="col">
-                                {!! Form::number('probabilidad_ganar', null,['class'=>'form-control','placeholder' => 'Probabilidad de Ganar']); !!}
+                                {!! Form::text('contactoCliente', null,['class'=>'form-control','placeholder' => 'Contacto','id'=>'contactoCliente']); !!}
                             </div>
                         </div>
                     </form>
                 </div>
-
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">Save</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" onclick="guardarCliente()">Guardar Cliente</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -92,5 +60,47 @@
     <script>
         DisposeGrids();
         TreeGrid({Layout:{Url:"layoutPipeline"},Data:{Url:"dataPipeline/"},Upload:{Url:"savePipeline/"},Debug:0},"dataGrid");
+        R = null;
+        Grids.OnAfterValueChanged = function(G,row,col) {
+
+            if (col == "cliente") {
+                R=row;
+                cliente = G.GetString(row, "cliente");
+                codigo = G.GetString(row, "codigo");
+                if(cliente=="Nuevo Cliente"){
+                    $('#myModal').modal();
+                }
+            }
+        }
+        function guardarCliente() {
+            $.ajax({
+                type: "POST",
+                url: '{{URL::route("crearCliente")}}',
+                data: {ruc:  $("#ruc").val(),
+                    nombreCliente:  $("#nombreCliente").val(),
+                    telefonoCliente:  $("#telefonoCliente").val(),
+                    correoCliente:  $("#correoCliente").val(),
+                    contactoCliente:  $("#contactoCliente").val(),
+                    "_token": "{{ csrf_token() }}",},
+                success: function( msg ) {
+                    if(msg=="ERROR"){
+                        alert("El cliente no puede ser guardado")
+                    }else{
+                        for (var i = 0; i < Grids.length; i++) {
+                            var Gr = Grids[i];
+                            if (Gr) {
+                                if (Gr.id == "pipeline"){
+                                    alert(R)
+                                    G.SetValue(R, "cliente",1, 1);
+                                    G.RefreshCell (R, "cliente");
+                                    alert(R)
+                                }
+                            }
+                        }
+                        R = null;
+                    }
+                }
+            });
+        }
     </script>
 @endsection

@@ -2,8 +2,8 @@
     <Body>
     <B>
         @foreach ($oportunidades as $o)
-
             <I id="{{ $o->id}}"
+               codigo ="{{$o->id}}"
                empresa ="{{$o->empresa}}"
                pais ="{{$o->pais}}"
                ciudad ="{{$o->ciudad}}"
@@ -48,8 +48,11 @@
                forma_pago ="{{$o->forma_pago}}"
                codigo_interno ="{{$o->codigo_interno}}"
                proposal_mgr_asignado ="{{$o->proposal_mgr_asignado}}"
-               created_at ="{{$o->created_at}}"
-               updated_at ="{{$o->updated_at}}"
+               fecha_creacion ="{{$o->created_at}}"
+               fecha_actualizacion ="{{$o->updated_at}}"
+               presupuesto_referencial ="{{$o->presupuesto_referencial}}"
+               empresa_socia ="{{$o->empresa_socia}}"
+               porcentaje_participacion ="{{$o->porcentaje_participacion}}"
             />
         @endforeach
     </B>

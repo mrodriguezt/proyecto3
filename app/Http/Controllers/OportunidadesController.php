@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
 use App\Pais;
 use App\Pipeline;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OportunidadesController extends Controller
 {
@@ -26,7 +28,17 @@ class OportunidadesController extends Controller
         }
         $nPaises = implode("|",$nP);
         $cPaises = implode("|",$cP);
-        $data = ["nPaises"=>$nPaises,"cPaises"=>$cPaises];
+
+        $clientes = Cliente::where('status','A')->get();
+        $nC = array();
+        $cC = array();
+        foreach ($clientes as $n){
+            array_push($cC,$n->id);
+            array_push($nC,$n->nombre);
+        }
+        $nClientes = implode("|",$nC);
+        $cClientes = implode("|",$cC);
+        $data = ["nPaises"=>$nPaises,"cPaises"=>$cPaises,"nClientes"=>$nClientes,"cClientes"=>$cClientes];
         return response()->view("oportunidades.layout.oportunidades",$data)->header('Content-Type', 'text/xml');
     }
     public function dataPipeline()
@@ -79,8 +91,8 @@ class OportunidadesController extends Controller
                                             'binario_esperado' => $A["binario_esperado"],
                                             'binario_optimista' => $A["binario_optimista"],
                                             'plazo_ejecucion' => $A["plazo_ejecucion"],
-                                            'fecha_inicio' => date('Y-m-m',strtotime($A["fecha_inicio"])),
-                                            'fecha_terminacion' => date('Y-m-m',strtotime($A["fecha_terminacion"])),
+                                            'fecha_inicio' => date('Y-m-d',strtotime($A["fecha_inicio"])),
+                                            'fecha_terminacion' => date('Y-m-d',strtotime($A["fecha_terminacion"])),
                                             'ingenieria' => $A["ingenieria"],
                                             'hh_ingenieria' => $A["hh_ingenieria"],
                                             'procura' => $A["procura"],
@@ -89,21 +101,26 @@ class OportunidadesController extends Controller
                                             'operacion_mantenimiento' => $A["operacion_mantenimiento"],
                                             'tipo_contrato' => $A["tipo_contrato"],
                                             'descripcion_alcance' => $A["descripcion_alcance"],
-                                            'fecha_identificacion_opportunidad' =>date('Y-m-m', strtotime($A["fecha_identificacion_opportunidad"])),
-                                            'fecha_invitacion' => date('Y-m-m',strtotime($A["fecha_invitacion"])),
-                                            'fecha_visita' => date('Y-m-m',strtotime($A["fecha_visita"])),
+                                            'fecha_identificacion_opportunidad' =>date('Y-m-d', strtotime($A["fecha_identificacion_opportunidad"])),
+                                            'fecha_invitacion' => date('Y-m-d',strtotime($A["fecha_invitacion"])),
+                                            'fecha_visita' => date('Y-m-d',strtotime($A["fecha_visita"])),
                                             'visita_obligatoria' => $A["visita_obligatoria"],
-                                            'fecha_preguntas' =>  date('Y-m-m',strtotime($A["fecha_preguntas"])),
-                                            'fecha_respuestas' =>  date('Y-m-m',strtotime($A["fecha_respuestas"])),
-                                            'fecha_entrega_oferta' =>  date('Y-m-m',strtotime($A["fecha_entrega_oferta"])),
-                                            'fecha_negociacion' =>  date('Y-m-m',strtotime($A["fecha_negociacion"])),
-                                            'fecha_adjudicacion' =>  date('Y-m-m',strtotime($A["fecha_adjudicacion"])),
+                                            'fecha_preguntas' =>  date('Y-m-d',strtotime($A["fecha_preguntas"])),
+                                            'fecha_respuestas' =>  date('Y-m-d',strtotime($A["fecha_respuestas"])),
+                                            'fecha_entrega_oferta' =>  date('Y-m-d',strtotime($A["fecha_entrega_oferta"])),
+                                            'fecha_negociacion' =>  date('Y-m-d',strtotime($A["fecha_negociacion"])),
+                                            'fecha_adjudicacion' =>  date('Y-m-d',strtotime($A["fecha_adjudicacion"])),
                                             'actividades' => $A["actividades"],
                                             'competencia' => $A["competencia"],
                                             'adjudicatario' => $A["adjudicatario"],
                                             'valor_adjudicacion' => $A["valor_adjudicacion"],
                                             'forma_pago' => $A["forma_pago"],
                                             'codigo_interno' => $A["codigo_interno"],
+                                            'porcentaje_participacion' => $A["porcentaje_participacion"],
+                                            'empresa_socia' => $A["empresa_socia"],
+                                            'usuario_modifica' =>Auth::user()->username,
+                                            'usuario_ingreso' =>Auth::user()->username,
+                                            'presupuesto_referencial' => $A["presupuesto_referencial"],
                                             'proposal_mgr_asignado' => $A["proposal_mgr_asignado"]
                                             ]);
                     $cambios.= "<I id='".$A["id"]."' NewId='".$pip->id."' Changed='1'/>";
@@ -146,9 +163,9 @@ class OportunidadesController extends Controller
                     if(isset($A["valor_oferta_scmi"]))
                         $pip->valor_oferta_scmi = ($A["valor_oferta_scmi"]);
                     if(isset($A["fecha_inicio"]))
-                        $pip->fecha_inicio = date('Y-m-d',strototime($A["fecha_inicio"]));
+                        $pip->fecha_inicio = date('Y-m-d',strtotime($A["fecha_inicio"]));
                     if(isset($A["fecha_terminacion"]))
-                        $pip->fecha_terminacion = date('Y-m-d',strototime($A["fecha_terminacion"]));
+                        $pip->fecha_terminacion = date('Y-m-d',strtotime($A["fecha_terminacion"]));
                     if(isset($A["ingenieria"]))
                         $pip->ingenieria = ($A["ingenieria"]);
                     if(isset($A["hh_ingenieria"]))
@@ -166,23 +183,23 @@ class OportunidadesController extends Controller
                      if(isset($A["descripcion_alcance"]))
                         $pip->descripcion_alcance = ($A["descripcion_alcance"]);
                      if(isset($A["fecha_identificacion_opportunidad"]))
-                        $pip->fecha_identificacion_opportunidad = date('Y-m-d',strototime($A["fecha_identificacion_opportunidad"]));
+                        $pip->fecha_identificacion_opportunidad = date('Y-m-d',strtotime($A["fecha_identificacion_opportunidad"]));
                     if(isset($A["fecha_invitacion"]))
-                        $pip->fecha_invitacion = date('Y-m-d',strototime($A["fecha_invitacion"]));
+                        $pip->fecha_invitacion = date('Y-m-d',strtotime($A["fecha_invitacion"]));
                     if(isset($A["fecha_visita"]))
-                        $pip->fecha_visita = date('Y-m-d',strototime($A["fecha_visita"]));
+                        $pip->fecha_visita = date('Y-m-d',strtotime($A["fecha_visita"]));
                     if(isset($A["visita_obligatoria"]))
                         $pip->visita_obligatoria = ($A["visita_obligatoria"]);
                     if(isset($A["fecha_preguntas"]))
-                        $pip->fecha_preguntas = date('Y-m-d',strototime($A["fecha_preguntas"]));
+                        $pip->fecha_preguntas = date('Y-m-d',strtotime($A["fecha_preguntas"]));
                     if(isset($A["fecha_respuestas"]))
-                        $pip->fecha_respuestas = date('Y-m-d',strototime($A["fecha_respuestas"]));
+                        $pip->fecha_respuestas = date('Y-m-d',strtotime($A["fecha_respuestas"]));
                     if(isset($A["fecha_entrega_oferta"]))
-                        $pip->fecha_entrega_oferta = date('Y-m-d',strototime($A["fecha_entrega_oferta"]));
+                        $pip->fecha_entrega_oferta = date('Y-m-d',strtotime($A["fecha_entrega_oferta"]));
                     if(isset($A["fecha_negociacion"]))
-                        $pip->fecha_negociacion = date('Y-m-d',strototime($A["fecha_negociacion"]));
+                        $pip->fecha_negociacion = date('Y-m-d',strtotime($A["fecha_negociacion"]));
                     if(isset($A["fecha_adjudicacion"]))
-                        $pip->fecha_adjudicacion = date('Y-m-d',strototime($A["fecha_adjudicacion"]));
+                        $pip->fecha_adjudicacion = date('Y-m-d',strtotime($A["fecha_adjudicacion"]));
                     if(isset($A["actividades"]))
                         $pip->actividades = ($A["actividades"]);
                     if(isset($A["competencia"]))
@@ -197,6 +214,14 @@ class OportunidadesController extends Controller
                         $pip->codigo_interno = ($A["codigo_interno"]);
                     if(isset($A["proposal_mgr_asignado"]))
                         $pip->proposal_mgr_asignado = ($A["proposal_mgr_asignado"]);
+                    if(isset($A["porcentaje_participacion"]))
+                        $pip->proposal_mgr_asignado = ($A["porcentaje_participacion"]);
+                    if(isset($A["empresa_socia"]))
+                        $pip->proposal_mgr_asignado = ($A["empresa_socia"]);
+                    if(isset($A["presupuesto_referencial"]))
+                        $pip->proposal_mgr_asignado = ($A["presupuesto_referencial"]);
+                    $pip->usuario_modifica = Auth::user()->username;
+
 
                     $pip->update();
                 }
@@ -204,7 +229,7 @@ class OportunidadesController extends Controller
         }
         echo '<Grid>';
         echo '<Changes>';
-        echo $cambios;
+        echo '<IO Result="" Message="La información ha sido grabada" />';
         echo '</Changes>';
         echo '</Grid>';
     }

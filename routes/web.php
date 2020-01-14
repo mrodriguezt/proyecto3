@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
+Route::group(['middleware'=>'auth'],function() {
 Route::get('oportunidades/', [
     'as' => 'oportunidades',
     'uses' => 'OportunidadesController@oportunidades'
@@ -38,3 +38,13 @@ Route::post('savePipeline/', [
     'as' => 'savePipeline',
     'uses' => 'OportunidadesController@savePipeline'
 ]);
+
+Route::get('clientes/', [
+    'as' => 'clientes',
+    'uses' => 'ClienteController@clientes'
+]);
+Route::post('crearCliente', [
+    'as' => 'crearCliente',
+    'uses' => 'ClienteController@crearCliente'
+]);
+    });

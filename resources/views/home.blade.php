@@ -1,5 +1,5 @@
 @extends('template.main')
-@section('title','OPERACIONES')
+@section('title','COMERCIAL')
 @section('content')
 
 @endsection
