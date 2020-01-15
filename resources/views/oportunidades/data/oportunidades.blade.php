@@ -22,8 +22,12 @@
                binario_esperado ="{{$o->binario_esperado}}"
                binario_optimista ="{{$o->binario_optimista}}"
                plazo_ejecucion ="{{$o->plazo_ejecucion}}"
-               fecha_inicio ="{{$o->fecha_inicio}}"
+               @if ($o->fecha_inicio!='1970-01-01')
+                    fecha_inicio ="{{$o->fecha_inicio}}"
+               @endif
+               @if ($o->fecha_terminacion!='1970-01-01')
                fecha_terminacion ="{{$o->fecha_terminacion}}"
+               @endif
                ingenieria ="{{$o->ingenieria}}"
                hh_ingenieria ="{{$o->hh_ingenieria}}"
                procura ="{{$o->procura}}"
@@ -32,15 +36,31 @@
                operacion_mantenimiento ="{{$o->operacion_mantenimiento}}"
                tipo_contrato ="{{$o->tipo_contrato}}"
                descripcion_alcance ="{{$o->descripcion_alcance}}"
-               fecha_identificacion_opportunidad ="{{$o->fecha_identificacion_opportunidad}}"
-               fecha_invitacion ="{{$o->fecha_invitacion}}"
-               fecha_visita ="{{$o->fecha_visita}}"
+               @if ($o->fecha_identificacion_opportunidad!='1970-01-01')
+                    fecha_identificacion_opportunidad ="{{$o->fecha_identificacion_opportunidad}}"
+               @endif
+               @if ($o->fecha_invitacion!='1970-01-01')
+                    fecha_invitacion ="{{$o->fecha_invitacion}}"
+               @endif
+               @if ($o->fecha_visita!='1970-01-01')
+                    fecha_visita ="{{$o->fecha_visita}}"
+               @endif
                visita_obligatoria ="{{$o->visita_obligatoria}}"
-               fecha_preguntas ="{{$o->fecha_preguntas}}"
-               fecha_respuestas ="{{$o->fecha_respuestas}}"
-               fecha_entrega_oferta ="{{$o->fecha_entrega_oferta}}"
-               fecha_negociacion ="{{$o->fecha_negociacion}}"
-               fecha_adjudicacion ="{{$o->fecha_adjudicacion}}"
+               @if ($o->fecha_preguntas!='1970-01-01')
+                    fecha_preguntas ="{{$o->fecha_preguntas}}"
+               @endif
+               @if ($o->fecha_respuestas!='1970-01-01')
+                    fecha_respuestas ="{{$o->fecha_respuestas}}"
+               @endif
+               @if ($o->fecha_entrega_oferta!='1970-01-01')
+                    fecha_entrega_oferta ="{{$o->fecha_entrega_oferta}}"
+               @endif
+               @if ($o->fecha_negociacion!='1970-01-01')
+                    fecha_negociacion ="{{$o->fecha_negociacion}}"
+               @endif
+               @if ($o->fecha_adjudicacion!='1970-01-01')
+                    fecha_adjudicacion ="{{$o->fecha_adjudicacion}}"
+               @endif
                actividades ="{{$o->actividades}}"
                competencia ="{{$o->competencia}}"
                adjudicatario ="{{$o->adjudicatario}}"

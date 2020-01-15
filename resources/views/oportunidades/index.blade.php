@@ -9,7 +9,7 @@
     <table class="table table-bordered">
         <tbody>
         <tr>
-            <td width="90%"> <div  id="dataGrid" style="width:100%;height:800px;"></div></td>
+            <td width="90%"> <div  id="dataGrid" style="width:100%;height:1000px;"></div></td>
         </tr>
         </tbody>
     </table>

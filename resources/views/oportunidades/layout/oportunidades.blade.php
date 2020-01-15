@@ -7,7 +7,7 @@
         <C Name='empresa' Width='90' Type='Enum' Enum='|SCMI|GENESYS|IAA' CanEdit="1" />
         <C Name='cliente' Width='150' Type='Enum' Enum='|Nuevo Cliente|{{$nClientes}}' EnumKeys='|ADD|{{$cClientes}}' CanEdit="1"/>
     </LeftCols>
-    <Cols> 
+    <Cols>
         <C Name='empresa_socia' Width='150' Type='Enum' Enum='|SCMI|GENESYS|IAA' CanEdit="1" />
         <C Name='porcentaje_participacion' Width='100' Type='Float' CanEdit="1"/>
         <C Name='pais' Width='120' Type='Enum' Enum='|{{$nPaises}}' EnumKeys='|{{$cPaises}}'CanEdit="1"/>
