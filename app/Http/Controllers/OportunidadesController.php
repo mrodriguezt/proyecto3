@@ -216,7 +216,7 @@ class OportunidadesController extends Controller
                     if(isset($A["proposal_mgr_asignado"]))
                         $pip->proposal_mgr_asignado = ($A["proposal_mgr_asignado"]);
                     if(isset($A["porcentaje_participacion"]))
-                        $pip->proposal_mgr_asignado = ($A["porcentaje_participacion"]);
+                        $pip->porcentaje_participacion = ($A["porcentaje_participacion"]);
                     if(isset($A["empresa_socia"]))
                         $pip->empresa_socia = ($A["empresa_socia"]);
                     if(isset($A["presupuesto_referencial"]))
