@@ -13,14 +13,14 @@
         <C Name='pais' Width='120' Type='Enum' Enum='|{{$nPaises}}' EnumKeys='|{{$cPaises}}'CanEdit="1"/>
         <C Name='ciudad' Width='120' Type='Text' CanEdit="1"/>
         <C Name='codigo_licitacion' Width='120' Type='Text' CanEdit="1"/>
-        <C Name='nombre_proyecto' Width='200' Type='Text' CanEdit="1"/>
+        <C Name='nombre_proyecto' Width='200' Type='Lines' CanEdit="1"/>
         <C Name='industria' Width='120' Type='Enum'  Enum='|Generacion|O&G|Mineral|Industrial|Otro'  Clear='sub_industria' CanEdit="1"/>
         <C Name='sub_industria' Width='120' Type='Enum' Related='industria' EnumGeneracion='|CS|CG|CC|Renovable|Distribucion' EnumO&G='|Upstream|Downstream|Terminal' EnumMineral='|Au|Ag|Cu|Otro'  EnumIndustrial='|Alimentos|Cemento|Otros' CanEdit="1"/>
         <C Name='estado' Width='120' Type='Enum' Enum="|Oportunidad Identificada|Referencial|RFQ Recibido|Descartada|Preparacion|Ofertada|Perdida|Adjudicada|Desierta|Cancelada|Otro" CanEdit="1"/>
         <C Name='valor_oferta_scmi' Width='120' Type='Float' CanEdit="1" Format="c"/>
-        <C Name='probabilidad_ejecucion' Width='120' Type='Float' CanEdit="1"/>
-        <C Name='probabilidad_ganar' Width='120' Type='Float' CanEdit="1"/>
-        <C Name='probabilidad_ejecutar' Width='120' Type='Float' CanEdit="1"/>
+        <C Name='probabilidad_ejecucion' Width='110' Type='Float' CanEdit="1" Format="p"/>
+        <C Name='probabilidad_ganar' Width='110' Type='Float' CanEdit="1" Format="p"/>
+        <C Name='probabilidad_ejecutar' Width='120' Type='Float' CanEdit="0" Format="c" Formula="valor_oferta_scmi*probabilidad_ejecucion*probabilidad_ganar"/>
         <C Name='binario_pesimista' Width='110' Type='Bool' CanEdit="1"/>
         <C Name='binario_esperado' Width='110' Type='Bool' CanEdit="1"/>
         <C Name='binario_optimista' Width='110' Type='Bool' CanEdit="1"/>
@@ -57,13 +57,13 @@
     </Cols>
     <Header  Wrap="1"
     empresa="Empresa"  pais="Pais" ciudad ="Ciudad" codigo="ID" cliente="Cliente" codigo_licitacion="Codigo de Licitación" nombre_proyecto="Nombre de Proyecto" industria="Industria"  sub_industria="Sub-Industria" estado="Estado"
-             valor_oferta_scmi ="Valor Oferta SCMI"
+             valor_oferta_scmi ="Valor Estimado de Oportunidad SCMI"
              empresa_socia="Empresa Socia" porcentaje_participacion="Porcentaje Participacion"
              fecha_creacion="Fecha Creacion"
              fecha_actualizacion="Fecha Actualización"
              probabilidad_ejecucion ="Probabilidad de Ejecucion"
              probabilidad_ganar ="Probabilidad de Ganar"
-             probabilidad_ejecutar ="Probabilidad SCMI Ejecutar"
+             probabilidad_ejecutar ="Valor Probabilidad SCMI Ejecutar"
              binario_pesimista ="Binario - pesimista"
              binario_esperado ="Binario - esperado"
              binario_optimista ="Binario - optimista"
