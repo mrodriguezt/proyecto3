@@ -14,7 +14,7 @@ class OportunidadesController extends Controller
     public function oportunidades()
     {
 
-        $paises = Pais::select('id as value','nombre as label')->where('status','A')->get()->pluck('label','value');
+        $paises = Pais::select('id as value','nombre as label')->where('status','A')->orderBy('nombre')->get()->pluck('label','value');
         return view('oportunidades.index')->with('paises',$paises);
     }
     public function layoutPipeline()
