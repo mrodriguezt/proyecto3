@@ -9,7 +9,7 @@
     </LeftCols>
     <Cols>
         <C Name='empresa_socia' Width='150' Type='Enum' Enum='|SCMI|GENESYS|IAA' CanEdit="1" />
-        <C Name='porcentaje_participacion' Width='100' Type='Float' CanEdit="1"/>
+        <C Name='porcentaje_participacion' Width='100' Type='Float' CanEdit="1"  Format="p"/>
         <C Name='pais' Width='120' Type='Enum' Enum='|{{$nPaises}}' EnumKeys='|{{$cPaises}}'CanEdit="1"/>
         <C Name='ciudad' Width='120' Type='Text' CanEdit="1"/>
         <C Name='codigo_licitacion' Width='120' Type='Text' CanEdit="1"/>
