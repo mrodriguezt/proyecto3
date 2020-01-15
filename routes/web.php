@@ -49,4 +49,10 @@ Route::post('crearCliente/', [
     'as' => 'crearCliente',
     'uses' => 'ClienteController@crearCliente'
 ]);
-    });
+
+Route::get('inteligencia/', [
+    'as' => 'inteligencia',
+    'uses' => 'InteligenciaController@inteligencia'
+]);
+
+});
