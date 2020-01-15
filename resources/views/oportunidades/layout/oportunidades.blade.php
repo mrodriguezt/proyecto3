@@ -13,7 +13,7 @@
         <C Name='pais' Width='120' Type='Enum' Enum='|{{$nPaises}}' EnumKeys='|{{$cPaises}}'CanEdit="1"/>
         <C Name='ciudad' Width='120' Type='Text' CanEdit="1"/>
         <C Name='codigo_licitacion' Width='120' Type='Text' CanEdit="1"/>
-        <C Name='nombre_proyecto' Width='120' Type='Text' CanEdit="1"/>
+        <C Name='nombre_proyecto' Width='200' Type='Text' CanEdit="1"/>
         <C Name='industria' Width='120' Type='Enum'  Enum='|Generacion|O&G|Mineral|Industrial|Otro'  Clear='sub_industria' CanEdit="1"/>
         <C Name='sub_industria' Width='120' Type='Enum' Related='industria' EnumGeneracion='|CS|CG|CC|Renovable|Distribucion' EnumO&G='|Upstream|Downstream|Terminal' EnumMineral='|Au|Ag|Cu|Otro'  EnumIndustrial='|Alimentos|Cemento|Otros' CanEdit="1"/>
         <C Name='estado' Width='120' Type='Enum' Enum="|Oportunidad Identificada|Referencial|RFQ Recibido|Descartada|Preparacion|Ofertada|Perdida|Adjudicada|Desierta|Cancelada|Otro" CanEdit="1"/>
