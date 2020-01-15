@@ -4,8 +4,8 @@
          AppendId='1' FullId='1' IdChars='0123456789'  NumberId='1' LastId='1' CaseSensitiveId='1'/>
     <LeftCols>
         <C Name='codigo' Width='50' Type='Int' CanEdit="0" />
-        <C Name='empresa' Width='150' Type='Enum' Enum='|SCMI|GENESYS|IAA' CanEdit="1" />
-        <C Name='cliente' Width='120' Type='Enum' Enum='|Nuevo Cliente|{{$nClientes}}' EnumKeys='|ADD|{{$cClientes}}' CanEdit="1"/>
+        <C Name='empresa' Width='80' Type='Enum' Enum='|SCMI|GENESYS|IAA' CanEdit="1" />
+        <C Name='cliente' Width='150' Type='Enum' Enum='|Nuevo Cliente|{{$nClientes}}' EnumKeys='|ADD|{{$cClientes}}' CanEdit="1"/>
     </LeftCols>
     <Cols>
         <C Name='empresa_socia' Width='150' Type='Enum' Enum='|SCMI|GENESYS|IAA' CanEdit="1" />
