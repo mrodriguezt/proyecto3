@@ -54,5 +54,40 @@ Route::get('inteligencia/', [
     'as' => 'inteligencia',
     'uses' => 'InteligenciaController@inteligencia'
 ]);
-
+Route::get('layoutInteligencia/', [
+    'as' => 'layoutInteligencia',
+    'uses' => 'InteligenciaController@layoutInteligencia'
+]);
+Route::get('dataInteligencia/', [
+    'as' => 'dataInteligencia',
+    'uses' => 'InteligenciaController@dataInteligencia'
+]);
+Route::post('saveInteligencia/', [
+    'as' => 'saveInteligencia/',
+    'uses' => 'InteligenciaController@saveInteligencia'
+]);
+Route::post('subirFotoInteligencia/', [
+    'as'=>'subirFotoInteligencia',
+    'uses'=>'InteligenciaController@subirFotoInteligencia'
+]);
+Route::post('subirDocsInteligencia/', [
+    'as'=>'subirDocsInteligencia',
+    'uses'=>'InteligenciaController@subirDocsInteligencia'
+]);
+Route::get('clientes/', [
+    'as' => 'clientes',
+    'uses' => 'ClienteController@clientes'
+]);
+Route::get('layoutClientes/', [
+    'as' => 'layoutClientes',
+    'uses' => 'ClienteController@layoutClientes'
+]);
+Route::get('dataClientes/', [
+    'as' => 'dataClientes',
+    'uses' => 'ClienteController@dataClientes'
+]);
+Route::post('saveClientes/', [
+    'as' => 'saveClientes/',
+    'uses' => 'ClienteController@saveClientes'
+]);
 });

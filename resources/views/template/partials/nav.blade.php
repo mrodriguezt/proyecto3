@@ -12,7 +12,9 @@
                     Bases de Datos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('clientes') }}">Clientes </a>
                     <a class="dropdown-item" href="{{ route('oportunidades') }}">Pipeline </a>
+                    <a class="dropdown-item" href="{{ route('inteligencia') }}">Inteligencia </a>
                 </div>
             </li>
         </ul>

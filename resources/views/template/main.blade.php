@@ -41,6 +41,7 @@
 	<script src="{{ asset('plugins/grid-14/Grid/GridE.js')}}"></script>
 
 	<script>
+
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
